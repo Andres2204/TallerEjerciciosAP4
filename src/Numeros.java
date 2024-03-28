@@ -12,27 +12,6 @@ public class Numeros {
         n3 = null;
     }
 
-    // metodos (de control)
-
-    public void adicionarNumero(int x) {
-        if (n1 == null) {
-            n1 = x;
-            return;
-        }
-
-        if (x > n1) {
-            if (n2 == null) {
-                n2 = x;
-            } else if (n3 == null ) {
-                n3 = x;
-            } else {
-                System.out.println("Numero llenos;");
-            }
-        } else {
-            System.out.println("El numero es menor o igual a n1 (" +n1+")");
-        }
-    }
-
     // getters and setters
 
     public Integer getN1() {
