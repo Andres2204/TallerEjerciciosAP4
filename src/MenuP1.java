@@ -26,23 +26,19 @@ public class MenuP1 extends Menu {
                 }
 
                 case 1:
-                    msg("caso 1, nuevos nodos");
+                    msg("Añadiendo nodos hasta el siguiente numero primo...");
                     p1.siguientesNodos();
                     break;
 
                 case 2:
-                    msg("Mostrar");
-                    StringBuilder sb = new StringBuilder();
-                    sb.append("No hay nodos");
-
                     if(!p1.getArrayList().isEmpty()) {
-                        sb.delete(0, sb.toString().length());
+                        StringBuilder sb = new StringBuilder();
                         ArrayList<Numeros> n = p1.getArrayList();
                         for (int i = 0; i < n.size(); i++) {
                             sb.append("Nodo " + (i+1) + "\n\tN1: " + n.get(i).getN1() + "\n\tN2:" + n.get(i).getN2() + "\n\tN3: " + n.get(i).getN3()+"\n");
                         }
-                    }
-                    msgScroll(sb.toString());
+                        msgScroll(sb.toString());
+                    } else msg("El ArrayList esta vacio.");
                     break;
 
                 default:
