@@ -13,7 +13,6 @@ public class Punto1 {
     // metodos
     public void siguientesNodos() {
         if (n.isEmpty()) {
-            n = new ArrayList<>();
             n.add(crearNodo(1));
             return;
         }
