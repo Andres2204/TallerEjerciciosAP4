@@ -25,7 +25,7 @@ public class MenuP1 extends Menu {
                     return;
                 }
 
-                case 1:
+                case 1: // añadir automaticamente
                     msg("Añadiendo nodos hasta el siguiente numero primo...");
                     p1.siguientesNodos();
                     break;

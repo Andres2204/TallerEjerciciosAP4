@@ -7,51 +7,62 @@ public class Punto2 {
         this.an = new ArrayList<ArrayList<Integer>>();
     }
 
-    public void crearNodo() {
-        if (an.isEmpty()) {
-            an.add(crearArrayList(3));
-            return;
-        }
-
-        // buscar siguiente primo();
-        int sp = 0;
-        int size = an.get(an.size()-1).size();
-        for (sp = size; sp <= size + 20; sp++) {
-            if (esPrimo(sp)) break;
-        }
-        System.out.println("Siguiente primo -> "+sp);
-        an.add(crearArrayList(sp));
+    public void crearNodo(ArrayList<Integer> numeros) { crearNodo(false, numeros); }
+    public void crearNodo() { crearNodo(true, null); }
+    public void crearNodo(boolean automatico, ArrayList<Integer> numeros) {
+        if (automatico) an.add(crearArrayList( siguientePrimo(an.get(an.size()-1).size()) ));
+        else an.add(numeros);
     }
 
-    private ArrayList<Integer> crearArrayList(int e) {
 
+    private ArrayList<Integer> crearArrayList(int e) {
         ArrayList<Integer> nuevo = new ArrayList<>();
-        int digitos = 1;
-        int primero = 0;
+
+        int primero = 1000;
         int x;
         for (int i = 0; i < e; i++) {
             do {
-                x = numeroAleatorio(digitos);
-            } while (x < primero);
-            if (x > Math.pow(10, digitos)*0.7) digitos++;
-            nuevo.add(x);
-            if (nuevo.size() == 1) primero = x;
-        }
+                x = numeroAleatorio();
+            } while (x > primero);
 
+            if (nuevo.isEmpty()) { // si es el primero
+                x += e+5; // seguro anti-bucleinfinito
+                primero = x;
+                nuevo.add(x);
+            } else nuevo.add(x);
+        }
         return nuevo;
     }
 
 
-    public boolean esPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
+    public int siguientePrimo(int actualSize) {
+        // buscar siguiente primo();
+        int sp = 0;
+        for (sp = actualSize+1; sp <= actualSize + 20; sp++) {
+            if (esPrimo(sp)) break;
+        }
+        System.out.println("Siguiente primo (punto 2) -> "+sp);
+        return sp;
+    }
+    private boolean esPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
         for (int i = 2; i < n; i++) {
             if (n % i == 0) return false;
         }
         return true;
     }
 
-    public int numeroAleatorio(int digitos) {
-        int num = (int) Math.floor(Math.random() * (Math.pow(10, digitos)));
+    private int numeroAleatorio() {
+        int num = (int) (Math.random() * 100);;
         // System.out.println(num);
         return num;
+    }
+
+    // getters and setters
+    public ArrayList<ArrayList<Integer>> getAn() {
+        return an;
+    }
+
+    public void setAn(ArrayList<ArrayList<Integer>> an) {
+        this.an = an;
     }
 }

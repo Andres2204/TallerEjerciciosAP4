@@ -10,6 +10,8 @@ public class Punto1 {
         n = new ArrayList<>();
     }
 
+    // TODO: Poner mas espacios para los diguitos.
+
     // metodos
     public void siguientesNodos() {
         if (n.isEmpty()) {
@@ -18,22 +20,26 @@ public class Punto1 {
         }
 
         // buscar siguiente primo();
-        int sp = 0;
-        for (sp = n.size() + 1; sp <= n.size() + 20; sp++) {
-            if (esPrimo(sp)) break;
-        }
-        System.out.println("Siguiente primo -> "+sp);
+        int sp = siguientePrimo(n.size());
 
         // añadir el siguiente primo
         int diff = sp - n.size();
         for (int i = 0; i < diff; i++) {
             n.add(crearNodo(n.size() + 1));
         }
-
-
     }
 
-    public boolean esPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
+    public int siguientePrimo(int actualSize) {
+        // buscar siguiente primo();
+        int sp = 0;
+        for (sp = actualSize+1; sp <= actualSize + 20; sp++) {
+            if (esPrimo(sp)) break;
+        }
+        System.out.println("Siguiente primo (punto 2) -> "+sp);
+        return sp;
+    }
+
+    private boolean esPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
         for (int i = 2; i < n; i++) {
             if (n % i == 0) return false;
         }

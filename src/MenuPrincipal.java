@@ -16,15 +16,17 @@ public class MenuPrincipal extends Menu {
                 case 1:
                     new MenuP1("Menu del punto 1").menu();
                     break;
+
                 case 2:
-                    
+                    new MenuP2("Menu del punto 2").menu();
                     break;
+
                 case 3:
-                    
                     break;
+
                 case 4:
-                    
                     break;
+
                 case 5:
                     new MenuP5("Menu del punto 5").menu();
                     break;
