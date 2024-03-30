@@ -5,12 +5,10 @@ public class MenuP5 extends Menu {
 
     public MenuP5(String title) {
         super(title);
-        // TODO Auto-generated constructor stub
     }
 
     @Override
     public void menu() {
-        // TODO Auto-generated method stub
         Punto5 p5 = new Punto5();
         while (true) {
             int opt;

@@ -24,7 +24,6 @@ public class Punto5 {
                 Tarjetas.add(tarjeta);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
         Pattern mastercard = Pattern.compile("MasterCard");
@@ -115,7 +114,6 @@ public class Punto5 {
                 Tarjetas_Visa.add(tarjeta);
             }
         } catch (IOException e) {
-            // TODO Auto-generated catch block
             e.printStackTrace();
         }
     }
