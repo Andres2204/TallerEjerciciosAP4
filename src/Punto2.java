@@ -10,7 +10,8 @@ public class Punto2 {
     public void crearNodo(ArrayList<Integer> numeros) { crearNodo(false, numeros); }
     public void crearNodo() { crearNodo(true, null); }
     public void crearNodo(boolean automatico, ArrayList<Integer> numeros) {
-        if (automatico) an.add(crearArrayList( siguientePrimo(an.get(an.size()-1).size()) ));
+        if(automatico && an.size() == 0) an.add(crearArrayList(3));
+        else if (automatico) an.add(crearArrayList( siguientePrimo(an.get(an.size()-1).size()) ));
         else an.add(numeros);
     }
 

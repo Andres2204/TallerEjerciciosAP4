@@ -43,7 +43,7 @@ public class MenuP2 extends Menu {
 
                     String numeros = input("Ingrese " + elementos +" numeros menores que el anterior (separados por un espacio).").trim();
 
-                    Pattern patron = Pattern.compile("\\d+(?:\\s+\\d+){" + (elementos - 1) + "}");
+                    Pattern patron = Pattern.compile("-?\\d+(?:\\s+-?\\d+){" + (elementos - 1) + "}");
                     if (patron.matcher(numeros).matches()) {
                         System.out.println(numeros);
                         int[] numerosVec = Arrays.stream(numeros.split("\\s+")).mapToInt(Integer::parseInt).toArray();
