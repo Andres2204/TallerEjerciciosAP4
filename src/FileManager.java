@@ -38,6 +38,29 @@ public class FileManager {
         return output;
     }
 
+    public ArrayList<String> readFileArrayList() {
+        Scanner s = null;
+        ArrayList<String> lineas = new ArrayList<>();
+        try { // intenar leer archivo
+            s = new Scanner(f);
+            while (s.hasNextLine()) {
+                lineas.add(s.nextLine());
+
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        } finally { // intentar cerrar el scanner
+            try {
+                if (s != null) s.close();
+            } catch (Exception e2) {
+                e2.printStackTrace();
+            }
+        }
+        return lineas;
+    }
+
     // ================ [ Metodos de adicion ] ================
     public void adicionarLinea(String linea) {
         FileWriter fw = null;

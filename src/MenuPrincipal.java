@@ -6,7 +6,7 @@ public class MenuPrincipal extends Menu {
     public void menu() {
         while (true) {
             int opt = Integer.parseInt(input(
-                    "Menu: \n1. Primer Punto. \n2. Segundo Punto. \n3. Tercer Punto. \n4. Cuarto Punto. \n5. Quinto Punto. \n0. Salir"));
+                    "Menu 😎: \n1. Primer Punto. \n2. Segundo Punto. \n3. Tercer Punto. \n4. Cuarto Punto. \n5. Quinto Punto. \n0. Salir"));
 
             switch (opt) {
                 case 0:

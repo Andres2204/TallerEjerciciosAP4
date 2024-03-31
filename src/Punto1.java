@@ -11,6 +11,7 @@ public class Punto1 {
     }
 
     // TODO: Poner mas espacios para los diguitos.
+    // TODO: Poner entradas de datos manualmente, arreglar este punto mejor dicho
 
     // metodos
     public void siguientesNodos() {
