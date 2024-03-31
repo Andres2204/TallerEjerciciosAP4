@@ -52,13 +52,13 @@ public class MenuP5 extends Menu {
                     System.out.println(p5.TarjetasAño(año));
                     break;
 
-                case 5:
+                case 5: // ingresar una tarjeta nueva
                     String numero = ValidacionNumero(p5);
                     String fecha = Validaciones("(\\d{2}[/]\\d{2})", "Ingrese la fecha (mm/yy)");
                     String codigo = Validaciones("\\d{3}", "Ingrese el codigo (numero de 3 digitos)");
                     String tipo = Validaciones("(MasterCard|Visa)", "Ingrese el tipo de tarjeta (MaterCard o Visa)");
-                    String nombre = Validaciones(".+", "Ingrese el nombre de la tarjeta").trim();
-                    String apellido = Validaciones(".+", "Ingrese el apellido de la cedula").trim();
+                    String nombre = Validaciones(".+", "Ingrese el nombre del dueño de la tarjeta").trim();
+                    String apellido = Validaciones(".+", "Ingrese el apellido del dueño de la tarjeta").trim();
                     p5.Ingresar(nombre, apellido, numero, fecha, codigo, tipo);
                     msg("Se a ingresado exitosamente");
                     break;
@@ -69,7 +69,7 @@ public class MenuP5 extends Menu {
         }
     }
 
-    public String Validaciones(String patron, String msginput) {// metodo para realizar todas las valdiaciones, excepto el numero de la tarjeta, con expresiones regulares
+    public String Validaciones(String patron, String msginput) {// metodo para realizar todas las valdiaciones con expresiones regulares
         Pattern Patron = Pattern.compile(patron);
         String input;
         while (true) {
