@@ -54,7 +54,7 @@ public class MenuP5 extends Menu {
 
                 case 5: // ingresar una tarjeta nueva
                     String numero = ValidacionNumero(p5);
-                    String fecha = Validaciones("(\\d{2}[/]\\d{2})", "Ingrese la fecha (mm/yy)");
+                    String fecha = Validaciones("(0[1-9]|1[0-2])/(\\d{2})", "Ingrese la fecha (mm/yy)");
                     String codigo = Validaciones("\\d{3}", "Ingrese el codigo (numero de 3 digitos)");
                     String tipo = Validaciones("(MasterCard|Visa)", "Ingrese el tipo de tarjeta (MaterCard o Visa)");
                     String nombre = Validaciones(".+", "Ingrese el nombre del dueño de la tarjeta").trim();
