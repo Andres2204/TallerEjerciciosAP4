@@ -26,6 +26,7 @@ public class MenuPrincipal extends Menu {
                     break;
 
                 case 4:
+                    new MenuP4("Menu del punto 4").menu();
                     break;
 
                 case 5:
