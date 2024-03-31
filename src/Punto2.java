@@ -58,6 +58,19 @@ public class Punto2 {
         return num;
     }
 
+    public String NumerosMayores(){ // busca los numeros mayores de cada nodo
+        String s="";
+        for (ArrayList<Integer> arrayList : an) {
+            int max = Integer.MIN_VALUE, i = 1;
+            for (Integer integer : arrayList) {
+                if(integer > max) max = integer;
+            }
+            s += "Nodo "+i+": "+max+"\n";
+            i++;
+        }
+        return s;
+    }
+
     // getters and setters
     public ArrayList<ArrayList<Integer>> getAn() {
         return an;

@@ -13,11 +13,13 @@ public class MenuP2 extends Menu {
         while (true) {
             int opt;
             try {
-                opt = Integer.parseInt(input("Menu: \n1. Añadir nuevo nodo manualmente \n2. Añadir nuevo nodo automaticamente \n3. Mostrar nodos"));
+                opt = Integer.parseInt(input(
+                        "Menu: \n1. Añadir nuevo nodo manualmente \n2. Añadir nuevo nodo automaticamente \n3. Mostrar nodos \n4. El numero mayor de cada nodo \n 0. Salir "));
             } catch (Exception e) {
                 e.printStackTrace();
                 // control de la excepcion.
-                if (e.toString().contains("Cannot parse null string")) return;
+                if (e.toString().contains("Cannot parse null string"))
+                    return;
                 msg("Se necesita una opcion valida.");
                 continue;
             }
@@ -38,10 +40,13 @@ public class MenuP2 extends Menu {
 
                     int elementos;
                     if (!p2.getAn().isEmpty()) {
-                         elementos = p2.siguientePrimo(p2.getAn().get(p2.getAn().size() - 1).size()) - 1;
-                    } else elementos = 2;
+                        elementos = p2.siguientePrimo(p2.getAn().get(p2.getAn().size() - 1).size()) - 1;
+                    } else
+                        elementos = 2;
 
-                    String numeros = input("Ingrese " + elementos +" numeros menores que el anterior (separados por un espacio).").trim();
+                    String numeros = input(
+                            "Ingrese " + elementos + " numeros menores que el anterior (separados por un espacio).")
+                            .trim();
 
                     Pattern patron = Pattern.compile("-?\\d+(?:\\s+-?\\d+){" + (elementos - 1) + "}");
                     if (patron.matcher(numeros).matches()) {
@@ -51,7 +56,8 @@ public class MenuP2 extends Menu {
 
                         int max = Integer.MIN_VALUE;
                         for (int i = 0; i < numerosVec.length; i++) {
-                            if (max < numerosVec[i]) max = numerosVec[i];
+                            if (max < numerosVec[i])
+                                max = numerosVec[i];
                         }
 
                         if (menor > max) {
@@ -66,7 +72,8 @@ public class MenuP2 extends Menu {
                         } else {
                             msg("Solo numeros menores que el primero!");
                         }
-                    } else msg("El patron no concuerda!");
+                    } else
+                        msg("El patron no concuerda!");
                     break;
 
                 case 2: // crear automaticamente
@@ -87,7 +94,16 @@ public class MenuP2 extends Menu {
                             }
                         }
                         msgScroll(sb.toString());
-                    } else msg("El ArrayList esta vacio.");
+                    } else
+                        msg("El ArrayList esta vacio.");
+                    break;
+
+                case 4: // mostrar los numeros mayores de cada nodo
+                    an = p2.getAn();
+                    if (!an.isEmpty())
+                        msgScroll(p2.NumerosMayores());
+                    else
+                        msg("El ArrayList esta vacio.");
                     break;
 
                 default:
