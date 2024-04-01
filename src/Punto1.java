@@ -2,7 +2,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.regex.Pattern;
 
-
 public class Punto1 {
     ArrayList<Numeros> n;
 
@@ -15,13 +14,15 @@ public class Punto1 {
 
     // metodos
     public void siguientesNodos() {
+        
         if (n.isEmpty()) {
             n.add(crearNodo(1));
+            n.add(crearNodo(2));
             return;
         }
 
         // buscar siguiente primo();
-        int sp = siguientePrimo(n.size());
+        int sp = siguientePrimo();
 
         // añadir el siguiente primo
         int diff = sp - n.size();
@@ -30,19 +31,22 @@ public class Punto1 {
         }
     }
 
-    public int siguientePrimo(int actualSize) {
+
+    public int siguientePrimo() {
         // buscar siguiente primo();
         int sp = 0;
-        for (sp = actualSize+1; sp <= actualSize + 20; sp++) {
-            if (esPrimo(sp)) break;
+        for (sp = n.size() + 1; sp <= n.size() + 20; sp++) {
+            if (esPrimo(sp))
+                break;
         }
-        System.out.println("Siguiente primo (punto 2) -> "+sp);
+        System.out.println("Siguiente primo (punto 2) -> " + sp);
         return sp;
     }
 
     private boolean esPrimo(int n) { // se podria reducir el rango de division hasta la mita del nuemero
         for (int i = 2; i < n; i++) {
-            if (n % i == 0) return false;
+            if (n % i == 0)
+                return false;
         }
         return true;
     }
@@ -53,31 +57,31 @@ public class Punto1 {
             // crear cadena
             String cadena = "";
             for (int i = 0; i < 3; i++) {
-                if ( i == 0) {
+                if (i == 0) {
                     do {
                         x = numeroAleatorio(digitos);
-                    } while (x <= ((Math.pow(10, digitos)) * 0.7));
+                    } while (!(x <= ((Math.pow(10, digitos)) - 3)));
                 } else {
-                    do {
-                        x = numeroAleatorio(digitos);
-                    } while (x > (Math.pow(10, digitos)));
+
+                    x = numeroAleatorio(digitos);
+
                 }
 
                 cadena += x + " ";
             }
 
             // verificar cadena.
-            if( verificarCadena(cadena))
+            if (verificarCadena(cadena, digitos))
                 return new Numeros(Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray());
         }
     }
 
     // verificacion
-    public boolean verificarCadena(String cadena) {
-        Pattern p = Pattern.compile("\\d+ \\d+ \\d+ ");
+    public boolean verificarCadena(String cadena, int digitos) {
+        Pattern p = Pattern.compile("\\d{" + digitos + "} \\d{" + digitos + "} \\d{" + digitos + "} ");
         if (p.matcher(cadena).matches()) {
             int[] nms = Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray();
-            if (nms[0] < nms[1] && nms[0] < nms[2]) {
+            if (nms[0] < nms[1] && nms[1] < nms[2]) {
                 System.out.println("[!] Cadena valida: " + Arrays.toString(nms));
                 return true;
             }

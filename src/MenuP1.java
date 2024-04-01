@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.regex.Pattern;
 
 public class MenuP1 extends Menu {
 
@@ -11,11 +13,13 @@ public class MenuP1 extends Menu {
         while (true) {
             int opt;
             try {
-                opt = Integer.parseInt(input("Menu: " + p1.getArrayList().size() + " \n1. Caso 1. \n2. Caso 2."));
+                opt = Integer.parseInt(input(
+                        "Menu:  \n1. Ingresar nodos automaticamente. \n2. Ingresar nodos manualmente.\n3. Mostrar ArrayList. \n4. Promedios \n0. Salir"));
             } catch (Exception e) {
                 e.printStackTrace();
                 // control de la excepcion.
-                if (e.toString().contains("Cannot parse null string")) return;
+                if (e.toString().contains("Cannot parse null string"))
+                    return;
                 msg("Se necesita una opcion valida.");
                 continue;
             }
@@ -31,14 +35,33 @@ public class MenuP1 extends Menu {
                     break;
 
                 case 2:
-                    if(!p1.getArrayList().isEmpty()) {
+                    int Nciclos;
+                    if (!p1.getArrayList().isEmpty()) {
+                        Nciclos = p1.siguientePrimo() - p1.getArrayList().size();
+                    } else
+                        Nciclos = 2;
+                    for (int i = 1; i <= Nciclos; i++) {
+                        String cadena = ValidacionNumeros(i, p1);
+                        p1.getArrayList().add(new Numeros(
+                                Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray()));
+                    }
+                    break;
+
+                case 3:
+                    if (!p1.getArrayList().isEmpty()) {
                         StringBuilder sb = new StringBuilder();
                         ArrayList<Numeros> n = p1.getArrayList();
                         for (int i = 0; i < n.size(); i++) {
-                            sb.append("Nodo " + (i+1) + "\n\tN1: " + n.get(i).getN1() + "\n\tN2:" + n.get(i).getN2() + "\n\tN3: " + n.get(i).getN3()+"\n");
+                            sb.append("Nodo " + (i + 1) + "\n\tN1: " + n.get(i).getN1() + "\n\tN2: " + n.get(i).getN2()
+                                    + "\n\tN3: " + n.get(i).getN3() + "\n");
                         }
                         msgScroll(sb.toString());
-                    } else msg("El ArrayList esta vacio.");
+                    } else
+                        msg("El ArrayList esta vacio.");
+                    break;
+
+                case 4:
+
                     break;
 
                 default:
@@ -46,6 +69,30 @@ public class MenuP1 extends Menu {
                     break;
             }
 
+        }
+    }
+
+    public String Validaciones(String patron, String msginput) {// metodo para realizar todas las valdiaciones con
+                                                                // expresiones regulares
+        Pattern Patron = Pattern.compile(patron);
+        String input;
+        while (true) {
+            input = input(msginput).trim();
+            if (!Patron.matcher(input).matches()) { // validar el formato correcto
+                msg("Formato invalido");
+            } else
+                return input;
+        }
+    }
+
+    public String ValidacionNumeros(int i, Punto1 p1) {
+        while (true) {
+            String cadena = Validaciones("\\d{" + i + "} \\d{" + i + "} \\d{" + i + "}",
+                    "Ingrese 3 numeros separados por un espacio, cada numero de " + i + " digitos y cada numero tiene que ser mas grande que el anterior (ej: 1 2 3)");
+
+            if (p1.verificarCadena(cadena, i))
+                return cadena;
+            else msg("");
         }
     }
 }
