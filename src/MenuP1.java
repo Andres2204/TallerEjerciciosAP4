@@ -34,14 +34,14 @@ public class MenuP1 extends Menu {
                     p1.siguientesNodos();
                     break;
 
-                case 2:
+                case 2: // añadir manualmente
                     int Nciclos;
                     if (!p1.getArrayList().isEmpty()) {
                         Nciclos = p1.siguientePrimo() - p1.getArrayList().size();
                     } else
                         Nciclos = 2;
                     for (int i = 1; i <= Nciclos; i++) {
-                        String cadena = ValidacionNumeros(i, p1);
+                        String cadena = ValidacionNumeros(p1.getArrayList().size()+1, p1);
                         p1.getArrayList().add(new Numeros(
                                 Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray()));
                     }
@@ -85,14 +85,14 @@ public class MenuP1 extends Menu {
         }
     }
 
-    public String ValidacionNumeros(int i, Punto1 p1) {
+    public String ValidacionNumeros(int digitos, Punto1 p1) {
         while (true) {
-            String cadena = Validaciones("\\d{" + i + "} \\d{" + i + "} \\d{" + i + "}",
-                    "Ingrese 3 numeros separados por un espacio, cada numero de " + i + " digitos y cada numero tiene que ser mas grande que el anterior (ej: 1 2 3)");
+            String cadena = Validaciones("\\d{" + digitos + "} \\d{" + digitos + "} \\d{" + digitos + "}",
+                    "Ingrese 3 numeros separados por un espacio, cada numero de " + digitos + " digitos y cada numero tiene que ser mas grande que el anterior (ej: # (#+1) (#+2))");
 
-            if (p1.verificarCadena(cadena, i))
+            if (p1.verificarCadena(cadena+" ", digitos))
                 return cadena;
-            else msg("");
+            else msg("Cadad numero debe ser mayor que el anterior");
         }
     }
 }
