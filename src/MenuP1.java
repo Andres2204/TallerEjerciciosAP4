@@ -61,7 +61,7 @@ public class MenuP1 extends Menu {
                     break;
 
                 case 4:
-
+                    msgScroll(p1.promedios());
                     break;
 
                 default:

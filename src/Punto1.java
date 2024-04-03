@@ -14,7 +14,7 @@ public class Punto1 {
 
     // metodos
     public void siguientesNodos() {
-        
+
         if (n.isEmpty()) {
             n.add(crearNodo(1));
             n.add(crearNodo(2));
@@ -30,7 +30,6 @@ public class Punto1 {
             n.add(crearNodo(n.size() + 1));
         }
     }
-
 
     public int siguientePrimo() {
         // buscar siguiente primo();
@@ -74,6 +73,25 @@ public class Punto1 {
             if (verificarCadena(cadena, digitos))
                 return new Numeros(Arrays.stream(cadena.split(" ")).mapToInt(Integer::parseInt).toArray());
         }
+    }
+
+    public String promedios() {
+        String s = "";
+        int indexNodosizquierda = 0;
+        int indexNodosderecha = n.size() - 1;
+        while (indexNodosizquierda <= indexNodosderecha) {
+            if (indexNodosizquierda != indexNodosderecha) {
+                s += "Nodo " + (indexNodosizquierda + 1) + ": " + (((float) (n.get(indexNodosizquierda).getN1()
+                        + n.get(indexNodosizquierda).getN2() + n.get(indexNodosizquierda).getN3())) / 3) + "\n\n";
+                s += "Nodo " + (indexNodosderecha + 1) + ": " + (((float) (n.get(indexNodosderecha).getN1()
+                        + n.get(indexNodosderecha).getN2() + n.get(indexNodosderecha).getN3())) / 3) + "\n\n";
+            } else
+                s += "Nodo " + (indexNodosderecha + 1) + ": " + (((float) (n.get(indexNodosderecha).getN1()
+                        + n.get(indexNodosderecha).getN2() + n.get(indexNodosderecha).getN3())) / 3) + "\n\n";
+            indexNodosizquierda++;
+            indexNodosderecha--;
+        }
+        return s;
     }
 
     // verificacion
